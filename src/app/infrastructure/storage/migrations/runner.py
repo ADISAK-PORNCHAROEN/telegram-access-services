@@ -307,7 +307,7 @@ class PostgresMigrationRunner:
         constraints = await connection.fetch(
             """SELECT relation.relname AS table_name,
                       constraint_row.conname AS constraint_name,
-                      constraint_row.contype AS constraint_type,
+                      constraint_row.contype::text AS constraint_type,
                       constraint_row.convalidated AS is_validated,
                       pg_get_constraintdef(constraint_row.oid, true) AS definition
                FROM pg_constraint AS constraint_row
