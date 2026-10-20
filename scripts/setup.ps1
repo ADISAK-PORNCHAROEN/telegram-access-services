@@ -61,24 +61,24 @@ function Read-Value([string]$key, [string]$prompt, [string]$pattern, [string]$hi
 }
 
 function Ensure-DatabasePassword {
-  $password = Get-EnvValue 'POSTGRES_PASSWORD'
-  if ($password) {
-    if ($password -notmatch '^[A-Za-z0-9_-]{43}$') {
-      throw 'POSTGRES_PASSWORD must be a 43-character URL-safe value. Keep the existing installation password.'
+  $databaseCredential = Get-EnvValue 'POSTGRES_PASSWORD'
+  if ($databaseCredential) {
+    if ($databaseCredential -notmatch '^[A-Za-z0-9_-]{43}$') {
+      throw 'The stored Docker database credential has an invalid format. Preserve the generated value or remove it to generate a new one.'
     }
-    Write-Host '  Keeping the existing database password.' -ForegroundColor DarkGray
+    Write-Host '  Keeping the existing database credential.' -ForegroundColor DarkGray
     return
   }
   $bytes = New-Object byte[] 32
   $random = [System.Security.Cryptography.RandomNumberGenerator]::Create()
   try {
     $random.GetBytes($bytes)
-    $password = [Convert]::ToBase64String($bytes).TrimEnd('=').Replace('+', '-').Replace('/', '_')
+    $databaseCredential = [Convert]::ToBase64String($bytes).TrimEnd('=').Replace('+', '-').Replace('/', '_')
   } finally {
     $random.Dispose()
     [Array]::Clear($bytes, 0, $bytes.Length)
   }
-  Set-EnvValue 'POSTGRES_PASSWORD' $password
+  Set-EnvValue 'POSTGRES_PASSWORD' $databaseCredential
 }
 
 if ($DatabaseOnly) {
@@ -118,6 +118,8 @@ Write-Host "`nSetup complete. Updated: $($written -join ', ')" -ForegroundColor 
 Write-Host 'The .env file is private. Keep it with this installation and back it up securely.'
 if ($Docker) {
   Write-Host 'Next: docker compose up -d --build'
+  Write-Host 'Follow the app logs and open the one-time setup URL from a private network or through the printed SSH tunnel.'
+  Write-Host 'Complete owner authorization in your browser once; the saved Telegram session persists in the app volume.'
   Write-Host 'Then: docker compose logs -f app'
 } else {
   Write-Host 'Next: uv sync'

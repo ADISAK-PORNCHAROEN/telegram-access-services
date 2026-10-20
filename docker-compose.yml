@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: telegram_service
       POSTGRES_USER: telegram_service
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Run scripts/setup_env.ps1 -Docker first}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}"
     volumes:
       - customer-postgres-data:/var/lib/postgresql
     healthcheck:
@@ -18,6 +18,11 @@ services:
       retries: 20
       start_period: 10s
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
     networks:
       - customer
 
@@ -28,11 +33,16 @@ services:
       target: runtime
     command: ["telegram-service-migrate"]
     environment:
-      DATABASE_URL: "postgresql://telegram_service:${POSTGRES_PASSWORD:?Run scripts/setup_env.ps1 -Docker first}@database:5432/telegram_service"
+      DATABASE_URL: "postgresql://telegram_service:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}@database:5432/telegram_service"
     depends_on:
       database:
         condition: service_healthy
     restart: "no"
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
     networks:
       - customer
 
@@ -44,7 +54,7 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: "postgresql://telegram_service:${POSTGRES_PASSWORD:?Run scripts/setup_env.ps1 -Docker first}@database:5432/telegram_service"
+      DATABASE_URL: "postgresql://telegram_service:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}@database:5432/telegram_service"
       JOB_EXECUTION_MODE: durable
     depends_on:
       database:

@@ -1,5 +1,5 @@
 [project]
-name = "telegram-service"
+name = "telegram-access-services"
 version = "0.1.0"
 description = "Telegram bot that re-posts media from save-restricted chats the owner's session already belongs to"
 requires-python = ">=3.11"
@@ -14,13 +14,6 @@ dependencies = [
 
 [project.scripts]
 telegram-service-migrate = "app.bootstrap:migrate_database"
-
-[dependency-groups]
-dev = [
-    "graphifyy==0.9.80",
-    "pytest>=8",
-    "pyyaml>=6.0.3",
-]
 
 [build-system]
 requires = ["hatchling"]
@@ -42,9 +35,6 @@ packages = ["src/app"]
 
 [tool.hatch.build.targets.sdist]
 only-include = ["src/app", "bot.py", "README.md", "pyproject.toml"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
 
 [tool.uv]
 link-mode = "copy"

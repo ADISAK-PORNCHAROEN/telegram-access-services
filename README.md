@@ -59,11 +59,15 @@ The owner session can access only chats the owner account is already authorized 
 
 ## Keep your installation safe
 
-- Back up the PostgreSQL and application volumes before upgrades or moving the installation.
+- Follow the [Operations Guide](docs/OPERATIONS.md) to back up the database and app-state volume before upgrades or moving the installation.
 - Update with `docker compose up -d --build`. This recreates containers without deleting volumes.
 - Never run `docker compose down -v` for an update. That command deletes persistent installation data.
 - Store `.env` and backups securely. The app volume contains the Telegram session and setup data.
 - Stop the app before taking a full backup so application state and database state remain consistent.
+
+Docker rotates each service's console logs. The operations guide also explains
+log access, full backup and restore, compatible-image rollback, and recovery
+when an older release cannot read the current database schema.
 
 ## Troubleshooting
 
@@ -77,6 +81,9 @@ If the setup URL does not open on a remote host, confirm the SSH tunnel is runni
 
 ## Repository contents
 
-This repository contains the runnable service, Docker installation files, and customer setup guidance. Development plans, Graphify output, local logs, Telegram sessions, and test databases belong outside this distribution.
+This package contains the runnable service, Docker installation files, and
+customer setup and operations guidance. Runtime files such as `.env`, Telegram
+sessions, logs, temporary media, and database backups are created separately on
+your installation and are not included in the source package.
 
 See [the license terms](LICENSE.md) for the permitted internal use and restrictions on source redistribution.
