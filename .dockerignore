@@ -1,0 +1,14 @@
+# Build context is an allowlist: no credentials, state, Git, logs, or media.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!uv.lock
+!README.md
+!bot.py
+!src/
+!src/**
+!deploy/
+!deploy/docker-entrypoint.sh
+**/__pycache__/
+**/*.py[cod]

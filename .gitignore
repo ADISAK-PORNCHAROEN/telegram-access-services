@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+*.session*
+session/
+tmp/
+logs/
+users.json
+prefs.json
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+dist/
+*.egg-info/

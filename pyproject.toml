@@ -1,0 +1,50 @@
+[project]
+name = "telegram-service"
+version = "0.1.0"
+description = "Telegram bot that re-posts media from save-restricted chats the owner's session already belongs to"
+requires-python = ">=3.11"
+dependencies = [
+    "aiohttp>=3.11,<4",
+    "asyncpg>=0.32.0",
+    "cryptg>=0.6.0",
+    "python-dotenv>=1.2.4",
+    "telethon>=1.45.0",
+    "tzdata>=2026.5",
+]
+
+[project.scripts]
+telegram-service-migrate = "app.bootstrap:migrate_database"
+
+[dependency-groups]
+dev = [
+    "graphifyy==0.9.80",
+    "pytest>=8",
+    "pyyaml>=6.0.3",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/app/presentation/web/static/setup.html" = "app/presentation/web/static/setup.html"
+"src/app/presentation/web/static/setup.css" = "app/presentation/web/static/setup.css"
+"src/app/presentation/web/static/setup.js" = "app/presentation/web/static/setup.js"
+"src/app/infrastructure/storage/migrations/001_durable_copy_jobs.sql" = "app/infrastructure/storage/migrations/001_durable_copy_jobs.sql"
+"src/app/infrastructure/storage/migrations/002_job_status_and_cancellation.sql" = "app/infrastructure/storage/migrations/002_job_status_and_cancellation.sql"
+"src/app/infrastructure/storage/migrations/003_fair_claims_and_deadlines.sql" = "app/infrastructure/storage/migrations/003_fair_claims_and_deadlines.sql"
+"src/app/infrastructure/storage/migrations/004_delivery_attempt_outcomes.sql" = "app/infrastructure/storage/migrations/004_delivery_attempt_outcomes.sql"
+"src/app/infrastructure/storage/migrations/005_fenced_job_leases.sql" = "app/infrastructure/storage/migrations/005_fenced_job_leases.sql"
+"src/app/infrastructure/storage/migrations/006_rate_limit_wait_details.sql" = "app/infrastructure/storage/migrations/006_rate_limit_wait_details.sql"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/app", "bot.py", "README.md", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv]
+link-mode = "copy"

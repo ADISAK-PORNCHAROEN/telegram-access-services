@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Three steps to install Telegram Access Services</title>
+  <desc id="desc">Prepare Telegram credentials, run the setup wizard and Docker Compose, then complete the one-time setup in a browser.</desc>
+  <rect width="1200" height="360" rx="28" fill="#101827"/>
+  <text x="60" y="58" fill="#F5F7FA" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700">Get started in three steps</text>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="60" y="92" width="330" height="208" rx="18" fill="#1B293B" stroke="#35465C"/>
+    <circle cx="100" cy="136" r="22" fill="#4FD1B5"/><text x="100" y="144" fill="#101827" font-size="22" font-weight="700" text-anchor="middle">1</text>
+    <text x="136" y="143" fill="#F5F7FA" font-size="20" font-weight="700">Prepare</text>
+    <text x="88" y="194" fill="#B9C5D4" font-size="16">Install Docker Compose.</text>
+    <text x="88" y="222" fill="#B9C5D4" font-size="16">Get your Telegram bot and</text>
+    <text x="88" y="248" fill="#B9C5D4" font-size="16">API credentials.</text>
+    <path d="M410 196h48m-13-13 13 13-13 13" fill="none" stroke="#4FD1B5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="465" y="92" width="330" height="208" rx="18" fill="#1B293B" stroke="#35465C"/>
+    <circle cx="505" cy="136" r="22" fill="#4FD1B5"/><text x="505" y="144" fill="#101827" font-size="22" font-weight="700" text-anchor="middle">2</text>
+    <text x="541" y="143" fill="#F5F7FA" font-size="20" font-weight="700">Configure</text>
+    <text x="493" y="194" fill="#B9C5D4" font-size="16">Run the setup script to save</text>
+    <text x="493" y="222" fill="#B9C5D4" font-size="16">credentials and generate a</text>
+    <text x="493" y="248" fill="#B9C5D4" font-size="16">private database password.</text>
+    <path d="M815 196h48m-13-13 13 13-13 13" fill="none" stroke="#4FD1B5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="870" y="92" width="270" height="208" rx="18" fill="#1B293B" stroke="#35465C"/>
+    <circle cx="910" cy="136" r="22" fill="#4FD1B5"/><text x="910" y="144" fill="#101827" font-size="22" font-weight="700" text-anchor="middle">3</text>
+    <text x="946" y="143" fill="#F5F7FA" font-size="20" font-weight="700">Connect</text>
+    <text x="898" y="194" fill="#B9C5D4" font-size="16">Start Docker, open the</text>
+    <text x="898" y="222" fill="#B9C5D4" font-size="16">one-time setup URL, and</text>
+    <text x="898" y="248" fill="#B9C5D4" font-size="16">sign in to your owner account.</text>
+  </g>
+</svg>

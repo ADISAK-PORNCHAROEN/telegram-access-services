@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101613">
+  <title>ตั้งค่าบัญชีเจ้าของ · telegram-service</title>
+  <link rel="stylesheet" href="/setup.css">
+  <script src="/setup.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wordmark">
+      <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>telegram<span class="wordmark-light">-service</span></span>
+    </div>
+    <p class="topbar-state"><span class="state-led"></span> FIRST-RUN SETUP</p>
+  </header>
+
+  <main class="setup-shell">
+    <section class="instrument" aria-labelledby="intro-title">
+      <div class="instrument-topline">
+        <span>OWNER SESSION</span>
+        <span class="signal-state"><i class="signal-mark" aria-hidden="true"></i> WAITING FOR INPUT</span>
+      </div>
+      <div class="signal-screen" role="img" aria-label="สัญญาณพร้อมสำหรับการเชื่อมต่อ">
+        <div class="screen-grid"></div>
+        <svg class="signal-wave" viewBox="0 0 640 160" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 81 H126 L148 80 L162 55 L176 111 L194 26 L212 132 L229 71 L247 81 H337 L353 80 L366 61 L381 96 L396 46 L413 114 L430 81 H640" />
+        </svg>
+        <span class="screen-readout">AUTH / 01</span>
+      </div>
+      <div class="instrument-copy">
+        <p class="eyebrow">เริ่มต้นระบบ · ครั้งเดียว</p>
+        <h1 id="intro-title">เชื่อมต่อบัญชี<br>เจ้าของระบบ</h1>
+        <p class="intro-copy">ใช้บัญชี Telegram เจ้าของที่ระบบต้องใช้เปิดโพสต์ต้นทาง การยืนยันนี้จะบันทึก session ไว้ใน volume เดิมของระบบ</p>
+      </div>
+      <div class="security-note">
+        <span class="security-rule" aria-hidden="true"></span>
+        <p>รหัสและรหัสผ่านสองชั้นใช้เฉพาะตอนนี้<br><strong>ระบบจะไม่บันทึกลงไฟล์ตั้งค่า</strong></p>
+      </div>
+      <div class="instrument-foot"><span>TELEGRAM MTProto</span><span>SESSION · PERSISTENT VOLUME</span></div>
+    </section>
+
+    <section class="flow-panel" aria-labelledby="flow-title">
+      <div class="flow-heading">
+        <div>
+          <p class="eyebrow">OWNER AUTHENTICATION</p>
+          <h2 id="flow-title">ยืนยันตัวตน</h2>
+        </div>
+        <span class="step-counter" id="step-counter">01 <i>/</i> 03</span>
+      </div>
+
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      <div id="missing-token" class="message message-error" role="alert" hidden>ลิงก์ตั้งค่าไม่ครบ กรุณาเปิดลิงก์ล่าสุดจาก log ของระบบ</div>
+
+      <form id="phone-form" class="setup-form" autocomplete="on">
+        <label for="phone">หมายเลขโทรศัพท์ Telegram</label>
+        <p class="field-help">ใส่รหัสประเทศด้วย เช่น +66</p>
+        <div class="input-wrap"><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="64" placeholder="+66 81 234 5678" required></div>
+        <button class="primary-button" type="submit"><span>ส่งรหัสยืนยัน</span><svg class="button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></button>
+      </form>
+
+      <form id="code-form" class="setup-form" autocomplete="on" hidden>
+        <label for="code">รหัสยืนยันจาก Telegram</label>
+        <p class="field-help">เปิดข้อความจาก Telegram แล้วกรอกรหัสที่ได้รับ</p>
+        <input id="code" name="code" class="code-input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="12" placeholder="กรอกรหัส" required>
+        <button class="primary-button" type="submit"><span>ยืนยันรหัส</span><svg class="button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></button>
+        <button class="text-button" id="resend-button" type="button">ส่งรหัสใหม่</button>
+      </form>
+
+      <form id="password-form" class="setup-form" autocomplete="on" hidden>
+        <label for="password">รหัสผ่านยืนยันสองชั้น</label>
+        <p class="field-help">บัญชีนี้เปิดการยืนยันสองชั้นไว้</p>
+        <input id="password" name="password" type="password" autocomplete="current-password" maxlength="1024" placeholder="รหัสผ่าน Telegram" required>
+        <button class="primary-button" type="submit"><span>ยืนยันและเริ่มระบบ</span><svg class="button-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" /></svg></button>
+      </form>
+
+      <section id="complete-panel" class="complete-panel" aria-labelledby="complete-title" hidden>
+        <span class="complete-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 7" /></svg></span>
+        <p class="eyebrow">SESSION AUTHORIZED</p>
+        <h3 id="complete-title">ตั้งค่าเรียบร้อย</h3>
+        <p>บันทึก session แล้ว ระบบกำลังเริ่มทำงานในหน้าต่างเดิม</p>
+      </section>
+
+      <footer class="flow-foot"><span>LOCAL FIRST-RUN FLOW</span><span>เชื่อมต่อ Telegram โดยตรง</span></footer>
+    </section>
+  </main>
+</body>
+</html>
